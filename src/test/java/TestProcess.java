@@ -50,13 +50,13 @@ public class TestProcess {
 
     static List<IPToCountryBean> ipToCountryBeanList = null;
 
-    // @Test
+     @Test
     public void readDataFromDatabase() throws IOException {
         ipToCountryBeanList = jdbcDaoImpl.fetch();
         System.out.println("Total Record fetched from DB : "
                 + (ipToCountryBeanList == null ? 0 : ipToCountryBeanList.size()));
-        // convertJavaToCSVAndWriteInFile();
-        convertJavaToJsonAndWriteInFile();
+         convertJavaToCSVAndWriteInFile();
+//        convertJavaToJsonAndWriteInFile();
     }
 
     public void convertJavaToJsonAndWriteInFile() throws IOException {
@@ -79,7 +79,7 @@ public class TestProcess {
     public void convertJavaToCSVAndWriteInFile() {
         try {
             Object csvData = CSVFileReader.parseFromJavaObject(ipToCountryBeanList);
-            int count = 30;
+            int count = 1;
             StringBuffer sb = new StringBuffer(csvData.toString());
             while (count > 0) {
                 sb.append("\n" + csvData.toString());
@@ -134,7 +134,7 @@ public class TestProcess {
 
     }
 
-    @Test
+//    @Test
     public void testMongo() {
         try {
             MongoClient mongo = new MongoClient("localhost", 27017);
