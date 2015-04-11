@@ -50,13 +50,12 @@ public class TestProcess {
 
     static List<IPToCountryBean> ipToCountryBeanList = null;
 
-     @Test
+//    @Test
     public void readDataFromDatabase() throws IOException {
         ipToCountryBeanList = jdbcDaoImpl.fetch();
         System.out.println("Total Record fetched from DB : "
                 + (ipToCountryBeanList == null ? 0 : ipToCountryBeanList.size()));
-         convertJavaToCSVAndWriteInFile();
-//        convertJavaToJsonAndWriteInFile();
+        convertJavaToCSVAndWriteInFile();
     }
 
     public void convertJavaToJsonAndWriteInFile() throws IOException {
@@ -134,7 +133,7 @@ public class TestProcess {
 
     }
 
-//    @Test
+     @Test
     public void testMongo() {
         try {
             MongoClient mongo = new MongoClient("localhost", 27017);
