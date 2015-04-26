@@ -1,0 +1,29 @@
+send: spawn id exp6 not open
+    while executing
+"send -- "July@1701\r""
+CRONTAB FILE FOR SERVER:10.10.1.1:DATE::
+
+CRONTAB FILE FOR SERVER:172.16.2.236:DATE::
+# This is an demo cron used for testing purpose
+#* * * * * cd /home/pashay/demoModes/Demo_Project_PHP && php Main.php > /home/pashay/demo1.txt
+
+# This is an demo cron used for testing purpose
+#20 16 * * * cd /home/pashay/demoModes/setup_for_default_check && php Main.php INSERTION_MODE > /home/pashay/demo1.txt
+
+#This is an cron for daily scheduling
+#0 0 8,9 * * date > /home/pashay/demo2.txt
+
+send: spawn id exp6 not open
+    while executing
+"send -- "July@1701\r""
+CRONTAB FILE FOR SERVER:10.10.1.1:DATE::
+
+CRONTAB FILE FOR SERVER:172.16.2.236:DATE::
+# This is an demo cron used for testing purpose
+#* * * * * cd /home/pashay/demoModes/Demo_Project_PHP && php Main.php > /home/pashay/demo1.txt
+
+# This is an demo cron used for testing purpose
+#20 16 * * * cd /home/pashay/demoModes/setup_for_default_check && php Main.php INSERTION_MODE > /home/pashay/demo1.txt
+
+#This is an cron for daily scheduling
+#0 0 8,9 * * date > /home/pashay/demo2.txt

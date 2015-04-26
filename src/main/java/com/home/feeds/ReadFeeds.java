@@ -21,12 +21,11 @@ import com.sun.syndication.io.FeedException;
 import com.sun.syndication.io.SyndFeedInput;
 
 public class ReadFeeds {
-
     public static void main(String[] args) throws IOException, IllegalArgumentException, FeedException {
         SyndFeed syndFeed = null;
         InputStream inputStream = null;
         try {
-            URLConnection openConnection = new URL("http://oglobo.globo.com/rss/plantaopais.xml").openConnection();
+            URLConnection openConnection = new URL("https://getinterviewinfo.wordpress.com/feed/").openConnection();
             inputStream = openConnection.getInputStream();
             if ("gzip".equals(openConnection.getContentEncoding())) {
                 inputStream = new GZIPInputStream(inputStream);
@@ -41,7 +40,6 @@ public class ReadFeeds {
             if (inputStream != null)
                 inputStream.close();
         }
-
         System.out.println("#####");
         getFeed();
     }
@@ -61,5 +59,4 @@ public class ReadFeeds {
             e.printStackTrace();
         }
     }
-
 }

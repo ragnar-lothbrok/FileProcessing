@@ -61,6 +61,7 @@ public class JDBCDaoImpl implements JDBCDao {
                 }
             }
         }
+        System.out.println("Total Records : "+(ipToCountryBeanList==null?null:ipToCountryBeanList.size()));
         return ipToCountryBeanList;
     }
 

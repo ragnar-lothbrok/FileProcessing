@@ -1,0 +1,59 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:jee="http://www.springframework.org/schema/jee" xmlns:lang="http://www.springframework.org/schema/lang"
+	xmlns:p="http://www.springframework.org/schema/p" xmlns:tx="http://www.springframework.org/schema/tx"
+	xmlns:util="http://www.springframework.org/schema/util" xmlns:task="http://www.springframework.org/schema/task"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+http://www.springframework.org/schema/aop http://www.springframework.org/schema/aop/spring-aop.xsd
+http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd
+http://www.springframework.org/schema/jee http://www.springframework.org/schema/jee/spring-jee.xsd
+http://www.springframework.org/schema/lang http://www.springframework.org/schema/lang/spring-lang.xsd
+http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util.xsd
+http://www.springframework.org/schema/task http://www.springframework.org/schema/task/spring-task-3.0.xsd">
+
+
+
+	<bean id="jsonParser" class="org.json.simple.parser.JSONParser" />
+
+	<bean id="documentBuilderFactory" class="javax.xml.parsers.DocumentBuilderFactory"
+		factory-method="newInstance" />
+
+	<bean id="saxParserFactory" class="javax.xml.parsers.SAXParserFactory"
+		factory-method="newInstance" />
+
+	<bean id="objectMapper" class="org.codehaus.jackson.map.ObjectMapper" />
+
+	<context:component-scan base-package="com.home.common.parser" />
+
+	<context:component-scan base-package="com.home.cron" />
+
+	<context:component-scan base-package="com.home.common.service.impl" />
+
+	<context:component-scan base-package="com.home.common.filereading.approach2" />
+
+	<bean id="dataSource"
+		class="org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="com.mysql.jdbc.Driver" />
+		<property name="url" value="jdbc:mysql://localhost:3306/equinox" />
+		<property name="username" value="root" />
+		<property name="password" value="root" />
+	</bean> 
+
+	<bean id="executor"
+		class="org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor">
+		<property name="corePoolSize" value="5" />
+		<property name="maxPoolSize" value="10" />
+		<property name="WaitForTasksToCompleteOnShutdown" value="true" />
+	</bean>
+
+	<util:properties id="cronProperties" location="cron.properties" />
+	<context:property-placeholder
+		properties-ref="cronProperties" />
+	<bean id="cronJobSchedulerTask" class="com.home.cron.CronJobSchedulerTask" />
+	<task:scheduled-tasks>
+		<task:scheduled ref="cronJobSchedulerTask" method="fetchAndSaveCronDetails"
+			cron="#{cronProperties['cron.schedule.expression']}" />
+	</task:scheduled-tasks>
+</beans>
